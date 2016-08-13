@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import * as actions from '../actions/auth';
@@ -7,29 +7,74 @@ import {
     } from '../config';
 
 class Header extends Component {
+
+    static contextTypes = {
+      router: PropTypes.object
+    };
+
+    onSignOutClick() {
+
+        this.props.signoutUser();
+        this.context.router.push('/admin-react/signin');
+        
+    }
     
     renderLinks() {
         if (this.props.authenticated) {
+
             //show link to sign out
             return (
                 <li className="nav-item" key={1}>
-                    <Link className="nav-link" to="/admin-react/signout">Sign Out</Link>
+                    <button className="btn pull-xs-right" onClick={this.onSignOutClick.bind(this)}>
+                        Sign Out
+                    </button>
                 </li>
             );
         } else {
             // show link to sign in or sign up
             // we user this return[] semantic so we don't have to wrap the jsx in a div
             // since it's a static list we can just set the key to 1
-            return [
-                <li className="nav-item" key={2}>
-                    <Link className="nav-link" to="/admin-react/signin">Sign In</Link>
-                </li>,
-                <li className="nav-item" key={3}>
-                    <Link className="nav-link" to="/admin-react/signup">Sign Up</Link>
-                </li>
-            ]
+            // return [
+            //     <li className="nav-item" key={2}>
+            //         <Link className="nav-link" to="/admin-react/signin">Sign In</Link>
+            //     </li>,
+            //     <li className="nav-item" key={3}>
+            //         <Link className="nav-link" to="/admin-react/signup">Sign Up</Link>
+            //     </li>
+            // ]
         }
     }
+
+        renderSidebar() {
+        if (this.props.authenticated) {
+
+            //show link to sign out
+            return (
+                <nav className="navbar nabar-light">
+                    <ul className="nav navbar-nav">
+                        <li>
+                            <Link className="nav-link" to="/admin-react/articles-list">View Articles</Link>
+                        </li>
+                    </ul>
+                </nav>
+            );
+        } else {
+            // show link to sign in or sign up
+            // we user this return[] semantic so we don't have to wrap the jsx in a div
+            // since it's a static list we can just set the key to 1
+            // return [
+            //     <li className="nav-item" key={2}>
+            //         <Link className="nav-link" to="/admin-react/signin">Sign In</Link>
+            //     </li>,
+            //     <li className="nav-item" key={3}>
+            //         <Link className="nav-link" to="/admin-react/signup">Sign Up</Link>
+            //     </li>
+            // ]
+        }
+    }
+
+    
+
 
     render() {
         return(
@@ -37,18 +82,13 @@ class Header extends Component {
                 <nav className="navbar nabar-light">
                     <ul className="nav navbar-nav">
                         <li className="nav-item">
-                            <Link to="/admin-react" className="nav-link">Home</Link>
-                        </li>
-                        {this.renderLinks()}
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/admin-react/administration">Admin</Link>
-                        </li>
-                        <li className="nav-item">
                             <a href={`${ROOT_URL}`} className="nav-link">Website</a>
                         </li>
+                        {this.renderLinks() }
                     </ul>
                 </nav>
                 <div className="clear"></div>
+                {this.renderSidebar() }
             </div>
         );
     }

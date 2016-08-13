@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import * as actions from '../../actions/auth';
+import {Link} from 'react-router';
 
 // format: if valueistrue && valueistrue && valueistrue then return the last value
 // if input has been clicked in then out (touched), and there's an error then return the div
@@ -25,6 +26,7 @@ class Signup extends Component {
     render() {
         const { handleSubmit, fields: { username, password, passwordConfirm }} = this.props;
         return (
+            <div>
             <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}> 
                 <fieldset className="form-group">
                     <label>Username:</label>
@@ -44,6 +46,9 @@ class Signup extends Component {
                 {this.renderAlert}
                 <button action="submit" className="btn btn-primary">Sign up</button>
             </form>
+            <p>Already have an account?</p>
+            <Link className="nav-link" to="/admin-react/signin">Sign In</Link>
+            </div>
         );
     }
 }

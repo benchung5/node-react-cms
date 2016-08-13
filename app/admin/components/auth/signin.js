@@ -1,8 +1,21 @@
-import  React, { Component } from 'react';
+import React, {Component, PropTypes} from 'react';
 import { reduxForm } from 'redux-form';
 import * as actions from '../../actions/auth';
+import {Link} from 'react-router';
 
 class Signin extends Component {
+
+    static contextTypes = {
+      router: PropTypes.object
+    };
+
+    componentWillMount() {
+        if (this.props.authenticated) {
+            // if the user is already logged in, just forward them right to the dashboard
+            this.context.router.push('/admin-react/dashboard');
+        }
+
+    }
 
     handleFormSubmit({ username, password }) {
         //console.log(username, password);
@@ -26,6 +39,7 @@ class Signin extends Component {
         const { handleSubmit, fields: {username, password} } = this.props;
 
         return (
+            <div>
             <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
                 <fieldset className="form-group">
                     <label>User Name:</label>
@@ -38,6 +52,9 @@ class Signin extends Component {
                 { this.renderAlert() }
                 <button action="submit" className="btn btn-primary">Sign in</button>
             </form>
+            <p>Don't have an account?</p>
+            <Link className="nav-link" to="/admin-react/signup">Sign Up</Link>
+            </div>
         );
     }
 
@@ -45,7 +62,10 @@ class Signin extends Component {
 
 function mapStateToProps(state) {
     //have our state to show up in props as errorMessage
-    return { errorMessage: state.auth.error }
+    return {
+        authenticated: state.auth.authenticated,
+        errorMessage: state.auth.error
+    }
 }
 
 export default reduxForm({

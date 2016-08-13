@@ -32,7 +32,7 @@ export function signinUser({ username, password }) {
             //in the browser console
             localStorage.setItem('token', response.data.token);
             //redirect to the route '/administration'
-            browserHistory.push('/admin-react/administration');
+            browserHistory.push('/admin-react/dashboard');
         })
         .catch(() => {
             //if request is bad
@@ -49,7 +49,7 @@ export function signupUser({ username, password }) {
         .then( response => {
             dispatch( { type: AUTH_USER } )
             localStorage.setItem('token', response.data.token);
-            browserHistory.push('/admin-react/administration');
+            browserHistory.push('/admin-react/dashboard');
         })
         .catch(() => {
             dispatch(authError('response.data.error'));

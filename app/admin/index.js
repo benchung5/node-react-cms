@@ -14,13 +14,14 @@ import reducers from './reducers';
 
 
 import App from './components/app';
-import Welcome from './components/welcome';
-import Signin from './components/auth/signin';
-import Signout from './components/auth/signout';
-import Signup from './components/auth/signup';
-import Administration from './components/administration';
-import RequireAuth from './components/require_auth';
 import ProtecetWarning from './components/protected_warning';
+import Signin from './components/auth/signin';
+import Signup from './components/auth/signup';
+import Dashboard from './components/dashboard';
+import ArticlesList from './components/articles/articles_list';
+
+
+import RequireAuth from './components/require_auth';
 import { AUTH_USER } from './actions/types';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
@@ -45,12 +46,12 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/admin-react" component={App}>
-        <IndexRoute component={Welcome} />
-        <Route path="signin" component={Signin} />
-        <Route path="signout" component={Signout} /> 
-        <Route path="signup" component={Signup} />      
-        <Route path="administration" component={RequireAuth(Administration)} />
+        <IndexRoute component={Signin} />
         <Route path="protected" component={ProtecetWarning} />
+        <Route path="signin" component={Signin} />
+        <Route path="signup" component={Signup} />      
+        <Route path="dashboard" component={RequireAuth(Dashboard)} />
+        <Route path="articles-list" component={RequireAuth(ArticlesList)} />
       </Route>
     </Router>
   </Provider>
