@@ -1,0 +1,125 @@
+to run locally using node (see README for docker instructions):
+-----------------------------------
+in command prompt:
+
+cd C:\Users\benja\dockerfiles\docker_node_nginx
+
+to start:
+npm start
+
+to start this with no packages:
+npm install (use comand prompt as administrator)
+
+to preview:
+localhost:3000
+
+
+
+react dependencies in this project:
+
+  "devDependencies": {
+    "babel-core": "^6.2.1",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "chai": "^3.5.0",
+    "chai-jquery": "^2.0.0",
+    "jquery": "^2.2.1",
+    "jsdom": "^8.1.0",
+    "mocha": "^2.4.5",
+    "react-addons-test-utils": "^0.14.7",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0"
+  },
+  "dependencies": {
+    "babel-preset-stage-1": "^6.1.18",
+    "lodash": "^3.10.1",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "react-redux": "^4.0.0",
+    "react-router": "^2.0.1",
+    "redux": "^3.0.4"
+  }
+  
+
+remove this:
+    "express-react-views": "^0.10.2",
+    sequelize cli
+    mysql
+
+the rest are node dependencies
+
+
+sequelize:
+
+    //build the data model and store it but don't persist it to the database
+    //  connection.sync({
+    //      force: true,
+    //      logging: console.log
+    //  }).then(function () {
+    //      var articleIPnstance =  Article.build({
+    //          title: 'demo title',
+    //          slug: 'demo-title',
+    //          body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nascetur ridiculus mus. Blandit augue, at blandit dui.'
+    //      });
+    //      articleInstance.save();
+    //  })
+    //      .catch(function (error) {
+    //          console.log(error);
+    //      })
+
+
+    // //connect to the database the auto generate sql to create a table
+// connection.sync({
+//     //enable to overwrite existing data
+//     force: true,
+//     logging: console.log
+// }).then(function() {
+//     return Article.create({
+//         title: 'demo title',
+//         slug: 'demo-title',
+//         body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nascetur ridiculus mus. Blandit augue, at blandit dui.'
+//     });
+// })
+// // callback of recent transaction (returns a javascript object of recent item inserted)
+// .then(function(insertedArticle) {
+//     //console.log(insertedArticle);
+//     console.log('data values just inserted:', insertedArticle.dataValues);
+// })
+// .catch(function(error) {
+//     console.log('error on create:', error);
+// })
+
+//connect to the database the auto generate sql to create a table
+//force: true - eable it to overwrite existing data
+//  connection.sync({
+//         force: true,
+//         logging: console.log
+//     }).then(function() {
+//     	return Article.create({
+//     		title: 'demo title',
+//             slug: 'demo-title',
+//     		body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nascetur ridiculus mus. Blandit augue, at blandit dui.'
+//     	});
+//     })
+//     .catch(function(error) {
+//         console.log(error);
+//     })
+  
+
+    //build the data model and store it but don't persist it to the database
+  //  connection.sync({
+  //      force: true,
+  //      logging: console.log
+  //  }).then(function () {
+  //      var articleIPnstance =  Article.build({
+  //          title: 'demo title',
+  //          slug: 'demo-title',
+  //          body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nascetur ridiculus mus. Blandit augue, at blandit dui.'
+  //      });
+  //      articleInstance.save();
+  //  })
+  //      .catch(function (error) {
+  //          console.log(error);
+  //      })
+  

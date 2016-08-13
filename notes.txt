@@ -1,0 +1,169 @@
+
+to run using docker:
+-----------------------------------
+
+#navigate to
+cd dockerfiles/docker_node_nginx
+
+#run
+docker-compose up -d
+
+
+if not database:
+-----
+# bash into postgres container:
+docker exec -i -t dockernodenginx_postgres_1 bash
+
+# create database:
+psql -U postgres
+CREATE DATABASE demo_schema;
+\q
+
+# import schema from our dump folder:
+psql -U postgres demo_schema < /app-db-dumps/dbexport.pgsql
+
+#exit out of container
+exit
+-----
+
+to preview:
+192.168.99.100:80
+
+access adminer:
+192.168.99.100:4001
+
+system: postgresSQL
+
+db server:
+192.168.99.100:5432
+
+username:
+postgres
+
+pass:
+3x1mpl3
+
+sass dev:
+-------------------------
+cd dockerfiles/docker_node_nginx/app/public
+compass watch
+
+react dev:
+-------------------------
+cd dockerfiles/docker_node_nginx/app
+webpack --watch --progress --watch-polling
+
+
+
+troubleshooting
+-------------------------
+stop then recreate containers
+docker-compose up --force-recreate
+
+restart all
+docker rm -f $(docker ps -a)
+docker rmi -f $(docker images)
+docker-compose up
+
+
+to deploy to production using docker machine:
+instructions:
+https://docs.docker.com/machine/examples/ocean/
+https://docs.docker.com/machine/drivers/digital-ocean/
+(must use 1 gig droplet or there will be errors on npm install)
+-----------------------------------------------------------------------------------------------------------
+
+# first temporarily remove your node_modules folder from add dir
+
+# navigate to project dir
+cd dockerfiles/docker_node_nginx
+
+run the startup script and copy the ip address that gets printed out:
+. docker-machine-production.sh
+
+# bash into postgres container:
+docker exec -i -t dockernodenginx_postgres_1 bash
+
+# create database:
+psql -U postgres
+CREATE DATABASE demo_schema;
+\q
+
+# import schema from our dump folder:
+psql -U postgres demo_schema < /app-db-dumps/dbexport.pgsql
+
+#exit out of container
+exit
+
+# run again but interactive mode:
+docker-compose -f docker-compose.yml -f production.yml up
+
+------
+
+preview on production:
+104.236.5.133:5246/
+
+db server on production:
+104.236.5.133:1260
+
+access adminer on production:
+104.236.5.133:4001
+
+db server:
+104.236.5.133:5432
+
+username:
+postgres
+
+pass:
+3x1mpl3
+
+------
+
+stop your Docker Machine and restart it:
+docker-machine restart node-nginx3
+eval $(docker-machine env node-nginx3)
+
+Deploying changes as you develop:
+(This will first rebuild the image for web and then stop, destroy, and recreate just the web service
+The --no-deps flag prevents Compose from also recreating any services which web depends on.)
+docker-compose build web
+docker-compose up --no-deps -d web
+or
+docker-compose up --no-deps web
+
+to destroy all containers/images:
+docker rm -f $(docker ps -a)
+docker rmi -f $(docker images)
+
+# Delete all stopped containers
+docker ps -q -f status=exited | xargs --no-run-if-empty docker rm
+# Delete all dangling (unused) images
+docker images -q -f dangling=true | xargs --no-run-if-empty docker rmi
+
+# to stop the machine:
+docker-machine stop node-nginx3
+# remove droplet:
+# If this also produces errors, you can always delete the 
+# Droplet using the Digitalocean web console as a fallback.
+docker-machine rm -f node-nginx
+
+stop all docker machines:
+docker-machine stop
+
+
+
+
+
+
+
+note - to run a script on postgress on startup:
+
+init.sql script:
+CREATE USER docker;
+CREATE DATABASE docker;
+GRANT ALL PRIVILEGES ON DATABASE docker TO docker;
+
+dockerfile:
+FROM library/postgres
+ADD init.sql /docker-entrypoint-initdb.d/

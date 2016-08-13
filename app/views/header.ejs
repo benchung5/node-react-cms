@@ -1,0 +1,115 @@
+<%- include('head') %>
+
+<body  class="home page page-template page-template-template-home-php no-customize-support transparent-header belowheader-menu menu-right-pageheader preload">
+    
+<header id="site-header">
+    <div id="header-inner">
+    <div class="testpagey" style="display: none; background: #000;">
+        &nbsp;<!--keep this to make the height work for testing-->
+    </div>
+    <div id="header-main-wrapper" class="menu-right">
+        <div id="header-main" class="row">
+            <div class="large-4 columns media-center-lg">
+                <div id="logo-header-wrapper">
+                <div id="logo-header">
+                    <a href="/"><img src="public/images/logo-main.png" alt="Logo" title="Your Site Title"/></a>
+                </div>
+                </div>
+            </div>
+            <div class="large-8 columns">
+                <div id="header-right-menu-right">
+                <div id="menu-right-wrapper">
+                    <div class="bg-wrapper">
+                        <div id="logo-header-wrapper">
+                            <div id="logo-header">
+                                <div id=logo-header-follow>
+                                <a href="/"><img src="public/images/logo-main.png" alt="Logo" title="Your Site Title"/></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="nav-primary-b" class="nav menu-right">
+                            <nav>
+                                <div class="nav-ul-wrapper">
+                                <ul class="menu group">
+                                    <li <% if (Slug === 'home') { %>class="active" <% } %> >
+                                        <a href="/">Home</a>
+                                    </li>
+                                    <li <% if (Slug === 'chiropractic') { %>class="active" <% } %> >
+                                        <a href="/chiropractic">Chiropractic</a>
+                                    </li>
+                                    <li <% if (Slug === 'massage-therapy') { %>class="active" <% } %> >
+                                        <a href="/massage-therapy">Massage Therapy</a>
+                                    </li>
+                                    <li <% if (Slug === 'foot-orthotics') { %>class="active" <% } %> >
+                                        <a href="/foot-orthotics">Foot Orthotics</a>
+                                    </li>
+                                    <li <% if (Slug === 'treatments-available') { %>class="active" <% } %> >
+                                        <a href="/treatments-available">Treatments Avilable</a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin-react">Admin</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Samples</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="internal-template">Template Sidebar</a></li>
+                                            <li><a href="internal-template-fullwidth">Templeate Full Width</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                </div>
+                                <!--<form action="/search" role="search" method="get" id="searchform">
+                                    <div>
+                                        <a href="javascript:void(0)" class="search-submit-button">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                        <div id="searchtext">
+                                            <div id="searchbtn"></div>
+                                            <div id="searchwrap">
+                                                    <input type="text" value="" name="kw" id="kw">
+                                                    <div id="searchclose"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>-->
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <div id="sticky-main-holder">
+    <!-- menu gets planted here when sticky-->
+    </div>
+        
+    <div id="mobile-menu">
+        <div id="mobile-selector" unselectable="on" class="unselectable">
+                <div id="logo-mobile">
+                <a href="/"><img src="public/images/logo-main.png" alt="Logo" title="Your Site Title"/></a>
+                </div>
+        </div>
+        <div id="mobile-dropdown" unselectable="on" class="unselectable">
+            <ul id="menu-custom-mobile-menu" class="menu">
+                <li class="active" >
+                <a href="/">Home</a>
+                </li>
+                <li><a href="internal-template.php">Template Sidebar</a></li>
+                <li><a href="internal-template-fullwidth.php">Templeate Full Width</a></li>
+                <li>
+                <a href="#l">Submenu1</a>
+                <ul class="sub-menu">
+                    <li><a href="#">Submenu1</a></li>
+                    <li><a href="#">Submenu2</a></li>
+                </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </div>
+</header>
+<div class="clear"></div>
+<!-- the wrapper for header, footer, and content area -->
+<div id="main-wrapper">

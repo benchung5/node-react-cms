@@ -1,0 +1,35 @@
+<div class="widget-area widget-sidebar">
+    <div class="widget-title-wrapper"><h3 class="sidebar-widget-title">Our Gallery</h3></div>
+    <div class="widget-body gallery">
+        <ul class="small-block-grid-2">
+            <li>
+                <div class="cat-header-wrapper">
+                    <a href="#" class="">
+                        <img src="public/images/gallery-img1.jpg">
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="cat-header-wrapper">
+                    <a href="/testmediaalbum/154" class="">
+                        <img src="public/images/gallery-img2.jpg">
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="cat-header-wrapper">
+                    <a href="#" class="">
+                        <img src="public/images/gallery-img3.jpg">
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="cat-header-wrapper">
+                    <a href="#" class="">
+                        <img src="public/images/gallery-img4.jpg">
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

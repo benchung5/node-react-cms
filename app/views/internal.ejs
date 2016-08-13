@@ -1,0 +1,24 @@
+<%- include('header') %>
+
+<div class="loading-container">
+    <div class="body-container">
+        <div class="row">
+            <div class="large-8 columns" id="content">
+
+                <h1><%= Pg %></h1>
+
+                <!--content-->
+                <div id="page-content"><%- Cont %></div>
+                <!--end content-->
+
+            </div>
+            <div class="large-4 columns" id="sidebar">
+                <!--sidebar-->
+                <%- include('sidebar') %>
+                <!--end sidebar-->
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<%- include('footer') %>

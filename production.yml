@@ -1,0 +1,49 @@
+# For production we are:
+# Removing any volume bindings for application code, so that code stays inside the container and can’t be changed from outside
+# Binding to different ports on the host
+# Setting environment variables differently (e.g., to decrease the verbosity of logging, or to enable email sending)
+# Specifying a restart policy (e.g., restart: always) to avoid downtime
+# Adding extra services (e.g., a log aggregator)
+
+web:
+  build: ./app
+  restart: always
+  volumes:
+    - "./app:/src/app"
+  ports:
+    - "2546:3000"
+  links:
+    - postgres
+  command: nodemon -L app/bin/www
+
+nginx:
+  build: ./nginx/
+  restart: always
+  ports:
+    - "5246:8081"
+  volumes:
+    - /www/public
+  volumes_from:
+    - web
+  links:
+    - web:web
+
+postgres:
+  build: ./postgres
+  restart: always
+  ports:
+    - "1260:5432" # Bind host port 1260 to PostgreSQL port 5432
+  volumes:
+    - ./db-dumps:/app-db-dumps # We're mounting this folder so we can backup/restore database dumps from our app folder.
+  environment:
+    LC_ALL: C.UTF-8
+    POSTGRES_PASSWORD: 3x1mpl3
+    # POSTGRES_USER: demo-schema
+
+adminer:
+  build: ./adminer/
+  restart: always
+  links:
+    - postgres
+  ports:
+    - "5458:8081"

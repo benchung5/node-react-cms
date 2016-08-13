@@ -1,0 +1,19 @@
+<%- include('head') %>
+
+<body  class="error page page-template page-template-template-home-php no-customize-support transparent-header belowheader-menu menu-right-pageheader preload">
+
+<!-- the wrapper for header, footer, and content area -->
+<div id="main-wrapper">
+
+<div class="loading-container">
+    <div class="body-container">
+        <div class="row">
+            <div class="large-12 columns" id="content">
+                <h1>Error status: <%= error.status %></h1>
+                <pre><%= error.stack %></pre>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<%- include('footer') %>
