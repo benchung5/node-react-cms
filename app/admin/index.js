@@ -19,9 +19,10 @@ import Signin from './components/auth/signin';
 import Signup from './components/auth/signup';
 import Dashboard from './components/dashboard';
 import ArticlesList from './components/articles/articles_list';
+import ArticleAdd from './components/articles/article_add';
 
 
-import RequireAuth from './components/require_auth';
+import RequireAuth from './components/auth/require_auth';
 import { AUTH_USER } from './actions/types';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
@@ -52,6 +53,7 @@ ReactDOM.render(
         <Route path="signup" component={Signup} />      
         <Route path="dashboard" component={RequireAuth(Dashboard)} />
         <Route path="articles-list" component={RequireAuth(ArticlesList)} />
+        <Route path="article-add" component={ArticleAdd} />
       </Route>
     </Router>
   </Provider>

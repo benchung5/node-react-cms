@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import Sidebar from '../sidebar'
 //no longer needed as the below uses the shorthand
 //import {bindActionCreators} from 'redux';
 //import {fetchPosts} from '../actions/index';
@@ -34,13 +35,13 @@ class ArticlesIndex extends Component {
     render() {
         return (
             <div>
-                <div className="text-xs-right">
-                    <Link to="/articles/new" className="btn btn-primary">Add an Article</Link>
+                <Sidebar/>
+                <div className="col-md-10">
+                    <h3>Articles</h3>
+                    <ul className="list-group article-list">
+                        {this.renderArticles()}
+                    </ul>
                 </div>
-                <h3>Articles</h3>
-                <ul className="list-group">
-                    {this.renderArticles()}
-                </ul>
             </div>
         );
     }

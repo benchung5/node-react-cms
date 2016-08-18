@@ -4,8 +4,8 @@
   "description": "\"NodeJS Test App\"",
   "main": "app.js",
   "scripts": {
-    "start": "NODE_ENV=development node app.js",
-    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "dev": "NODE_ENV=development nodemon app.js",
     "build": "webpack --progress",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch"

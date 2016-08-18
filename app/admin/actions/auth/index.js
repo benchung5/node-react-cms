@@ -52,7 +52,8 @@ export function signupUser({ username, password }) {
             browserHistory.push('/admin-react/dashboard');
         })
         .catch(() => {
-            dispatch(authError('response.data.error'));
+            //todo: be specific about username already taken, etc.
+            dispatch(authError('Error Signing up...'));
         });
     }
 }

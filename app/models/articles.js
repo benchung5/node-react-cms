@@ -20,7 +20,7 @@ module.exports = function(connection, DataTypes) {
                 validate: {
                     len: {
                         args: [1-150],
-                        msg: 'please enter a title with at least 10 chars but no more'
+                        msg: 'please enter a title 1-150 characters long'
                     }
                 }
             },

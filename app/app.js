@@ -15,6 +15,10 @@ var contact  = require('./routes/contact');
 var adminReact  = require('./routes/admin-react');
 var favicon = require('serve-favicon');
 
+// global settings
+var env  = process.env.NODE_ENV || "development";
+var config  = require(__dirname + '/config.json')[env];
+
 //express() returns a function and stores it in app.
 //calls the create server method like we did manually but maks things easier
 var app = express();
@@ -62,13 +66,50 @@ app.use('/', routes);
 //     next(err);
 // });
 
-// error handler
-// no stacktraces leaked to user unless in development environment
+// // error handler
+// // no stacktraces leaked to user unless in development environment
+// app.use(function(err, req, res, next) {
+//   // var err = new Error('Not Found');
+//   // err.status = 404;
+//   // next(err);
+  
+//   res.status(err.status || 500);
+//   res.status(500).send(err.message);
+//   // res.render('error', {
+//   //   message: err.message,
+//   //   error: (app.get('env') === 'development') ? err : {}
+//   // });
+//   next(err);
+
+// });
+
+
+// app.use(function(req, res, next){
+//   res.locals.user = req.user;
+//   next();
+// });
+
+// error handlers
+
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
+    });
+  });
+}
+
+// production error handler
+// no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
-    error: (app.get('env') === 'development') ? err : {}
+    error: {}
   });
 });
 

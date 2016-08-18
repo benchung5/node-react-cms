@@ -26,6 +26,11 @@ psql -U postgres demo_schema < /app-db-dumps/dbexport.pgsql
 exit
 -----
 
+to export database:
+pg_dump -U postgres demo_schema > app-db-dumps/dbexport.pgsql
+
+-----
+
 to preview:
 192.168.99.100:80
 
@@ -45,12 +50,12 @@ pass:
 
 sass dev:
 -------------------------
-cd dockerfiles/docker_node_nginx/app/public
+cd C:\Users\benja\dockerfiles\docker_node_nginx\app\public
 compass watch
 
 react dev:
 -------------------------
-cd dockerfiles/docker_node_nginx/app
+cd C:\Users\benja\dockerfiles\docker_node_nginx\app
 webpack --watch --progress --watch-polling
 
 

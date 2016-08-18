@@ -6,6 +6,7 @@ var express = require('express');
 var router  = express.Router();
 const passportService = require('./../services/passport');
 const passport = require('passport');
+const _ = require('lodash');
 
 //sence we use tokens we don't want to use the cookie based session (default)
 const requireAuth = passport.authenticate('jwt', { session: false });
@@ -64,27 +65,35 @@ router.get('/admin', requireAuth, function (req, res) {
 //example use: http://192.168.99.100/demo-title?qstr=somequery
 router.get('/:page', function (req, res) {
 
-    models.Article.findById(req.params.page).then(function (article) {
-        if (article) {
+    //if database is connected...
+    if (!_.isEmpty(models)) {
+        models.Article.findById(req.params.page).then(function (article) {
+            if (article) {
 
-            // to handle querystrings: Qstr: req.query.qstr
-            //put on template: <h2>Querystring Value: <%= Qstr %></h2>
-            res.render('internal', {
-                Slug: article.slug,
-                Pg: article.title,
-                Cont: article.body
-            });
-        } else {
-            // models.Article.create({
-            //     title: 'Demo Title',
-            //     slug: 'demo-title',
-            //     body: 'some-text'
-            // }).then(function (article) { });
-            res.status(404).render('404', { Url: req.url });
+                // to handle querystrings: Qstr: req.query.qstr
+                //put on template: <h2>Querystring Value: <%= Qstr %></h2>
+                res.render('internal', {
+                    Slug: article.slug,
+                    Pg: article.title,
+                    Cont: article.body
+                });
+            } else {
+                // models.Article.create({
+                //     title: 'Demo Title',
+                //     slug: 'demo-title',
+                //     body: 'some-text'
+                // }).then(function (article) { });
+                console.log('logging response error');
+                res.status(404).render('404', { Url: req.url });
+            }
+        });
+    } else {
+        res.status(500).render('error', {
+            message: 'no connection to database. Did you create one?',
+            error: {}
+        });
+    }
 
-        }
-
-    });
 
     //res.render('internal', { Pg: req.params.page , Qstr: req.query.qstr });
 

@@ -4,13 +4,13 @@ const bcrypt = require('bcrypt-nodejs');
 
 module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define("User", {
-    username: DataTypes.TEXT,
+    username: {type: DataTypes.TEXT, unique: true},
     password: DataTypes.TEXT
   }, {
       classMethods: {
-        associate: function (models) {
-          User.hasMany(models.Task)
-        }
+        // associate: function (models) {
+        //   User.hasMany(models.Task)
+        // }
       },
       instanceMethods: {
         generateHash: function (password) {
@@ -54,27 +54,3 @@ module.exports = function (sequelize, DataTypes) {
 
   return User;
 };
-
-
-// creating user tables:
-//-----------------------------------------------------
-
-// var User = connection.define('user', {
-//   firstName: {
-//     type: Sequelize.STRING,
-//     field: 'first_name' // Will result in an attribute that is firstName when user facing but first_name in the database
-//   },
-//   lastName: {
-//     type: Sequelize.STRING
-//   }
-// }, {
-//   freezeTableName: true // Model tableName will be the same as the model name
-// });
-
-// User.sync({force: true}).then(function () {
-//   // Table created
-//   return User.create({
-//     firstName: 'John',
-//     lastName: 'Hancock'
-//   });
-// });

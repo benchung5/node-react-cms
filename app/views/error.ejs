@@ -1,4 +1,4 @@
-<%- include('head') %>
+<%- include('head-error') %>
 
 <body  class="error page page-template page-template-template-home-php no-customize-support transparent-header belowheader-menu menu-right-pageheader preload">
 
@@ -9,7 +9,8 @@
     <div class="body-container">
         <div class="row">
             <div class="large-12 columns" id="content">
-                <h1>Error status: <%= error.status %></h1>
+                <h3>Error:</h3>
+                <p><%= message %></p>
                 <pre><%= error.stack %></pre>
             </div>
         </div>

@@ -69,57 +69,5 @@ sequelize:
     //      })
 
 
-    // //connect to the database the auto generate sql to create a table
-// connection.sync({
-//     //enable to overwrite existing data
-//     force: true,
-//     logging: console.log
-// }).then(function() {
-//     return Article.create({
-//         title: 'demo title',
-//         slug: 'demo-title',
-//         body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nascetur ridiculus mus. Blandit augue, at blandit dui.'
-//     });
-// })
-// // callback of recent transaction (returns a javascript object of recent item inserted)
-// .then(function(insertedArticle) {
-//     //console.log(insertedArticle);
-//     console.log('data values just inserted:', insertedArticle.dataValues);
-// })
-// .catch(function(error) {
-//     console.log('error on create:', error);
-// })
 
-//connect to the database the auto generate sql to create a table
-//force: true - eable it to overwrite existing data
-//  connection.sync({
-//         force: true,
-//         logging: console.log
-//     }).then(function() {
-//     	return Article.create({
-//     		title: 'demo title',
-//             slug: 'demo-title',
-//     		body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nascetur ridiculus mus. Blandit augue, at blandit dui.'
-//     	});
-//     })
-//     .catch(function(error) {
-//         console.log(error);
-//     })
-  
-
-    //build the data model and store it but don't persist it to the database
-  //  connection.sync({
-  //      force: true,
-  //      logging: console.log
-  //  }).then(function () {
-  //      var articleIPnstance =  Article.build({
-  //          title: 'demo title',
-  //          slug: 'demo-title',
-  //          body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nascetur ridiculus mus. Blandit augue, at blandit dui.'
-  //      });
-  //      articleInstance.save();
-  //  })
-  //      .catch(function (error) {
-  //          console.log(error);
-  //      })
   

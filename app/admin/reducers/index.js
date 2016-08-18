@@ -3,12 +3,15 @@ import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
 import authenticationReducer from './authentication';
 import articlesReducer from './articles';
+import articleReducer from './article';
 
 const rootReducer = combineReducers({
   //form: form
   form,
   auth: authenticationReducer,
-  articles: articlesReducer
+  articles: articlesReducer,
+  article: articleReducer
+
 });
 
 export default rootReducer;

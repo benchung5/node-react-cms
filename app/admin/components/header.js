@@ -45,36 +45,6 @@ class Header extends Component {
         }
     }
 
-        renderSidebar() {
-        if (this.props.authenticated) {
-
-            //show link to sign out
-            return (
-                <nav className="navbar nabar-light">
-                    <ul className="nav navbar-nav">
-                        <li>
-                            <Link className="nav-link" to="/admin-react/articles-list">View Articles</Link>
-                        </li>
-                    </ul>
-                </nav>
-            );
-        } else {
-            // show link to sign in or sign up
-            // we user this return[] semantic so we don't have to wrap the jsx in a div
-            // since it's a static list we can just set the key to 1
-            // return [
-            //     <li className="nav-item" key={2}>
-            //         <Link className="nav-link" to="/admin-react/signin">Sign In</Link>
-            //     </li>,
-            //     <li className="nav-item" key={3}>
-            //         <Link className="nav-link" to="/admin-react/signup">Sign Up</Link>
-            //     </li>
-            // ]
-        }
-    }
-
-    
-
 
     render() {
         return(
@@ -88,7 +58,6 @@ class Header extends Component {
                     </ul>
                 </nav>
                 <div className="clear"></div>
-                {this.renderSidebar() }
             </div>
         );
     }
