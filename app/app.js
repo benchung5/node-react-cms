@@ -23,8 +23,6 @@ var config  = require(__dirname + '/config.json')[env];
 //calls the create server method like we did manually but maks things easier
 var app = express();
 
-var apiController = require('./controllers/apiController.js');
-
 //use an environment variable to change the port # depending if it's deployed on a server or locally.
 //express usually uses port 3000 so we can use that as a fallback if no env variable exists
 var port = process.env.PORT || 3000;
@@ -48,9 +46,6 @@ app.use('/public', express.static(__dirname + '/public'));
 //favicon
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
-//route our api controller
-apiController(app);
-
 //routes
 app.use('/admin-react', adminReact);
 app.use('/users', users);
@@ -58,38 +53,13 @@ app.use('/articles', articles);
 app.use('/contact', contact);
 app.use('/', routes);
 
+// error handlers
+
 // // catch 404 and forward to error handler
 // app.use(function(req, res, next){
-//     var err = new Error('Not Found');
-//     err.status = 404;
 //     res.status(404).render('404', { Url: req.url });
 //     next(err);
 // });
-
-// // error handler
-// // no stacktraces leaked to user unless in development environment
-// app.use(function(err, req, res, next) {
-//   // var err = new Error('Not Found');
-//   // err.status = 404;
-//   // next(err);
-  
-//   res.status(err.status || 500);
-//   res.status(500).send(err.message);
-//   // res.render('error', {
-//   //   message: err.message,
-//   //   error: (app.get('env') === 'development') ? err : {}
-//   // });
-//   next(err);
-
-// });
-
-
-// app.use(function(req, res, next){
-//   res.locals.user = req.user;
-//   next();
-// });
-
-// error handlers
 
 // development error handler
 // will print stacktrace

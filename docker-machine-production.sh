@@ -8,7 +8,7 @@
 # try 32 bits 512mgb or 1gb or ram. But there is an error installing if you don't use x64 and it won't complete compose up if you use 512mb.
 
 # docker-machine create --driver digitalocean --digitalocean-image ubuntu-14-04-x64 --digitalocean-size 1gb --digitalocean-access-token $DOTOKEN machine-name
-docker-machine create --driver digitalocean --digitalocean-image ubuntu-14-04-x64 --digitalocean-size 1gb --digitalocean-access-token=3ee16a31ea5cf3c5d3c788be4b6fc7a6ae56ff4de81253269be06e8ff55a95b4 node-nginx3
+docker-machine create --driver digitalocean --digitalocean-image ubuntu-14-04-x64 --digitalocean-size 1gb --digitalocean-access-token=e3322ac4b581f2b08955ec9bbbbdbe1a7353177ee54ee8215263e541b4ea5cf1 node-nginx3
 
 # make the droplet machine the active host:
 docker-machine env node-nginx3

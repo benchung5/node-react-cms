@@ -47,9 +47,16 @@ export function signupUser({ username, password }) {
         //we can clean this up in the future
         axios.post( `${ROOT_URL}/users/create`, { username, password } )
         .then( response => {
-            dispatch( { type: AUTH_USER } )
-            localStorage.setItem('token', response.data.token);
-            browserHistory.push('/admin-react/dashboard');
+            if(response.data.error) {
+                console.log(response.data.error);
+                dispatch(authError(`There was an error creating the account: ${response.data.error}`));
+            } else {
+                console.log('response-create-success', response);
+                dispatch( { type: AUTH_USER } )
+                localStorage.setItem('token', response.data.token);
+                browserHistory.push('/admin-react/dashboard');
+            }
+
         })
         .catch(() => {
             //todo: be specific about username already taken, etc.

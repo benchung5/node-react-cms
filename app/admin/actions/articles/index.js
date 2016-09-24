@@ -10,7 +10,7 @@ import {
 export function fetchPosts() {
 
     return function(dispatch) {
-        axios.get(`${ROOT_URL}/api/articles`)
+        axios.get(`${ROOT_URL}/articles`)
         .then(response => {
 
             dispatch({
@@ -32,14 +32,11 @@ export function addArticle({ title, slug, body }) {
     return function(dispatch) {
 
         // post to http://192.168.99.100/api/articles/create
-        axios.post( `${ROOT_URL}/api/articles/create`, { title, slug, body } )
+        axios.post( `${ROOT_URL}/articles/create`, { title, slug, body } )
         .then( response => {
-
-
             if(response.data.error) {
                 dispatch(addArticleError(`there was an error creating the article: ${response.data.error}`));
             } else {
-                console.log('response-create-success', response);
                 dispatch({
                     type: ADD_ARTICLE,
                     payload: response.data
@@ -48,7 +45,6 @@ export function addArticle({ title, slug, body }) {
         })
         .catch(() => {
             //todo: if request is bad
-            //console.log('response error', response.data.error);
             dispatch(addArticleError('there was an error creating the article'));
         });
     }

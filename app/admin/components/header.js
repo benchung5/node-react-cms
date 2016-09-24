@@ -25,9 +25,7 @@ class Header extends Component {
             //show link to sign out
             return (
                 <li className="nav-item" key={1}>
-                    <button className="btn pull-xs-right" onClick={this.onSignOutClick.bind(this)}>
-                        Sign Out
-                    </button>
+                    <a href="#" className="nav-link" onClick={this.onSignOutClick.bind(this)}>Sign Out</a>
                 </li>
             );
         } else {

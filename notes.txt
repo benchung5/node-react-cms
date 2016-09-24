@@ -7,7 +7,8 @@ cd dockerfiles/docker_node_nginx
 
 #run
 docker-compose up -d
-
+#interactive mode
+docker-compose up  -it
 
 if not database:
 -----
@@ -20,7 +21,7 @@ CREATE DATABASE demo_schema;
 \q
 
 # import schema from our dump folder:
-psql -U postgres demo_schema < /app-db-dumps/dbexport.pgsql
+psql -U postgres demo_schema < app-db-dumps/dbexport.pgsql
 
 #exit out of container
 exit
@@ -48,6 +49,11 @@ postgres
 pass:
 3x1mpl3
 
+default admin user:
+Admin
+pass:
+123
+
 sass dev:
 -------------------------
 cd C:\Users\benja\dockerfiles\docker_node_nginx\app\public
@@ -62,7 +68,9 @@ webpack --watch --progress --watch-polling
 
 troubleshooting
 -------------------------
-stop then recreate containers
+first try modifying a file then saving it to get nodemon to update.
+
+to stop then recreate containers:
 docker-compose up --force-recreate
 
 restart all
@@ -75,6 +83,7 @@ to deploy to production using docker machine:
 instructions:
 https://docs.docker.com/machine/examples/ocean/
 https://docs.docker.com/machine/drivers/digital-ocean/
+see docker-machine-producion.sh
 (must use 1 gig droplet or there will be errors on npm install)
 -----------------------------------------------------------------------------------------------------------
 
@@ -149,19 +158,12 @@ docker images -q -f dangling=true | xargs --no-run-if-empty docker rmi
 # to stop the machine:
 docker-machine stop node-nginx3
 # remove droplet:
-# If this also produces errors, you can always delete the 
+# If this also produces errors, you can always delete the
 # Droplet using the Digitalocean web console as a fallback.
 docker-machine rm -f node-nginx
 
 stop all docker machines:
 docker-machine stop
-
-
-
-
-
-
-
 note - to run a script on postgress on startup:
 
 init.sql script:

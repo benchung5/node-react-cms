@@ -34,29 +34,32 @@
                                     <li <% if (Slug === 'home') { %>class="active" <% } %> >
                                         <a href="/">Home</a>
                                     </li>
-                                    <li <% if (Slug === 'chiropractic') { %>class="active" <% } %> >
-                                        <a href="/chiropractic">Chiropractic</a>
+                                    <% if (Array.isArray(Articles) && Articles != "") { for(var i=0; i<Articles.length; i++) { %>
+                                    <li <% if (Slug === Articles[i].slug) { %>class="active" <% } %> >
+                                        <a href= "<%= Articles[i].slug %>" ><%= Articles[i].title %></a>
                                     </li>
-                                    <li <% if (Slug === 'massage-therapy') { %>class="active" <% } %> >
-                                        <a href="/massage-therapy">Massage Therapy</a>
-                                    </li>
-                                    <li <% if (Slug === 'foot-orthotics') { %>class="active" <% } %> >
-                                        <a href="/foot-orthotics">Foot Orthotics</a>
-                                    </li>
-                                    <li <% if (Slug === 'treatments-available') { %>class="active" <% } %> >
-                                        <a href="/treatments-available">Treatments Avilable</a>
-                                    </li>
+                                    <% } } else { %>
                                     <li>
-                                        <a href="/admin-react">Admin</a>
+                                        <a href="#">no Articlesles yet</a>
                                     </li>
+                                    <% } %>
                                     <li>
-                                        <a href="#">Samples</a>
+                                        <a href="#">Dropdown</a>
                                         <ul class="sub-menu">
-                                            <li><a href="internal-template">Template Sidebar</a></li>
-                                            <li><a href="internal-template-fullwidth">Templeate Full Width</a></li>
+                                            <li><a href="#">Item1</a></li>
+                                            <li><a href="#">Item2</a></li>
                                         </ul>
                                     </li>
+                                    <li>
+                                        <a href="/admin-react">Login</a>
+                                    </li>
                                 </ul>
+
+
+                                <ul>
+
+                                </ul>
+
                                 </div>
                                 <!--<form action="/search" role="search" method="get" id="searchform">
                                     <div>

@@ -85,10 +85,15 @@ html {
     background: #fff;
 }
 
-html, body {
+html,body
+{
+    width: 100%;
+    /* important -> height: auto must be set or jquery scrollTop() won't work  */
     height: auto;
-    padding: 0;
-    margin: 0;
+    margin: 0px;
+    padding: 0px;
+    /*overflow-x: hidden; */
+    overflow: auto;
     color: $body-color;
     font-size: 1.1em;
 }
@@ -661,6 +666,7 @@ header#site-header {
 #logo-header {
     float: left;
     @include parent-valign;
+    max-width: 200px;
 /*    margin-top: 35px;*/
 }
 
@@ -683,7 +689,7 @@ header#site-header {
 }
 
 .full-width-img-home {
-    background: url(images/homepage-chiropractic.jpg); /* default image*/
+    background: url(images/featured.jpg); /* default image*/
     min-height: 580px;
     max-height: 600px;
     padding-top: 40px;

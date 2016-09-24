@@ -10,13 +10,10 @@ export default () => {
                             <Link className="nav-link" to="/admin-react/dashboard">Dashboard</Link>
                         </li>
                         <li>
-                            <h5>Articles</h5>
+                            <Link className="nav-link" to="/admin-react/articles-list">View Articles</Link>
                         </li>
                         <li>
-                            <Link className="nav-link" to="/admin-react/articles-list">View</Link>
-                        </li>
-                        <li>
-                            <Link className="nav-link" to="/admin-react/article-add">Add</Link>
+                            <Link className="nav-link" to="/admin-react/article-add">Add Articles</Link>
                         </li>
                     </ul>
                 </div>

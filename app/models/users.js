@@ -13,13 +13,16 @@ module.exports = function (sequelize, DataTypes) {
         // }
       },
       instanceMethods: {
-        generateHash: function (password) {
-          //use these like:
-          // models.User.find(123).success( function( user ) { 
-          //     user.setPassword('test');
-          // });
-          //return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-        },
+        // validatePassword: function (password, callback) {
+        //   let isValid = false;
+        //   if (password.length > 5 ) {
+        //     isValid = true;
+        //     callback(null, isValid);
+        //   } else {
+        //     isValid = false;
+        //     callback("Password must be at least 5 characters long", isValid)
+        //   }
+        // },
         comparePassword: function (candidatePassword, callback) {
 
           //compare the trying passoword with the one in the existing model
@@ -29,6 +32,33 @@ module.exports = function (sequelize, DataTypes) {
         },
       },
       hooks: {
+        beforeValidate: function (user) {
+
+          if (user.password.length < 5) {
+            return sequelize.Promise.reject("password must be at least 5 characters long");
+          }
+
+          //check if user already exists, we do this already in unique: true 
+          //but this way we can be more specific for error handling, etc.
+          User.find({
+            where: { username: user.username }
+          })
+            .then(function (user) {
+
+              // if (error)
+              //   // Some unexpected error occured with the find method.
+              //   return next(error);
+
+              if (user) {
+                //return next('Username already in use!');
+                return sequelize.Promise.reject("username already in use!");
+                // Call next with no arguments when validation is successful.
+                //next();
+                }
+
+            });
+
+        },
         afterValidate: function (user) {
 
           //encrypt password

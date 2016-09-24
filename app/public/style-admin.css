@@ -9,3 +9,12 @@
    .article-list li a {
        float: right;
    }
+
+   .navbar {
+       background: #f1f1f1;
+       margin-bottom: 20px;
+   }
+
+   .margin-bottom {
+       margin-bottom: 20px;
+   }

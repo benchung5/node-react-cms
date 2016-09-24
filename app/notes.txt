@@ -70,4 +70,47 @@ sequelize:
 
 
 
+    tasks model:
+
+
+    "use strict";
+
+module.exports = function(sequelize, DataTypes) {
+  var Task = sequelize.define("Task", {
+    title: DataTypes.STRING
+  }, {
+    classMethods: {
+      associate: function(models) {
+        Task.belongsTo(models.User, {
+          onDelete: "CASCADE",
+          foreignKey: {
+            allowNull: false
+          }
+        });
+      }
+    }
+  });
+
+  return Task;
+};
+
+
+
+//render internal template (anything but home)
+// app.get('*', function(req, res) {
+//     res.render('internal');
+// });
+
+// //respond to the http method or 'verb'.
+// app.get('/:page', function(req, res){
+//     //no need to put a content type as express does a best guess at that
+//     //id is stored in the url /:id so we can access it
+//     // res.send('<html><head><link href=/assets/style.css type=text/css rel=stylesheet /></head><body><h1>Person: ' + 
+//     // req.params.id + '</h1></body></html>')
+    
+// });
+
+
+
+
   
