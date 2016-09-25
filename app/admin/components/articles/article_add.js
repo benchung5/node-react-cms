@@ -13,7 +13,7 @@ class AddArticle extends Component {
 
     renderAdded() {
         // console.log('articleAdded: ', this.props.articleAdded);
-        if(this.props.articleAdded) {
+        if(this.props.articleAdded && !this.props.errorMessage) {
             return (
                 <div>
                     <span>Article: {this.props.articleAdded.title}<br/>successfully added. </span>
@@ -23,7 +23,8 @@ class AddArticle extends Component {
     }
 
     renderAlert() {
-        if (this.props.errorMessage) {
+        if (this.props.errorMessage && !this.props.articleAdded) {
+            console.log(this.props.errorMessage);
             return (
                 <div className="alert alert-danger">
                     <strong>Oops!</strong> {this.props.errorMessage}
@@ -88,7 +89,6 @@ function validate(formProps) {
 }
 
 function mapStateToProps(state) {
-    //console.log('state: ', state.article.articleAdded);
     return { 
         articleAdded: state.article.articleAdded,
         errorMessage: state.article.addArticleError

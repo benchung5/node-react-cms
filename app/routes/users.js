@@ -48,17 +48,17 @@ router.post('/verify', requireSignin, function (req, res) {
 });
 
 
-//http://192.168.99.100/users/3/destroy
-router.get('/:user_id/destroy', function (req, res) {
-    models.User.destroy({
-        where: {
-            id: req.params.user_id
-        }
-    }).then(function () {
-        app.locals.isAdminPage = true;
-        res.redirect('/admin');
-    });
-});
+// //http://192.168.99.100/users/3/destroy
+// router.get('/:user_id/destroy', function (req, res) {
+//     models.User.destroy({
+//         where: {
+//             id: req.params.user_id
+//         }
+//     }).then(function () {
+//         app.locals.isAdminPage = true;
+//         res.redirect('/admin');
+//     });
+// });
 
 
 module.exports = router;

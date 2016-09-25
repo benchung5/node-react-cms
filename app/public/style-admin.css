@@ -8,6 +8,7 @@
 
    .article-list li a {
        float: right;
+       margin-left: 10px;
    }
 
    .navbar {

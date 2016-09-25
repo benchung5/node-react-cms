@@ -76,6 +76,16 @@ function validate(formProps) {
         errors.password = 'passwords must match';
     }
 
+    //password strenth:
+    //https://www.thepolyglotdeveloper.com/2015/05/use-regex-to-test-password-strength-in-javascript/
+    //let strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+    //let mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+    let lightRegex = new RegExp("^((?=.*[A-Z]|[a-z])(?=.*[0-9]))(?=.{6,})");
+    if(!lightRegex.test(formProps.password)) {
+        //six characters or more and has at least one lowercase and one uppercase alphabetical character or has at least one lowercase and one numeric character or has at least one uppercase and one numeric character
+        errors.password = 'password must be at least 6 characters long with at least one numeric character';
+    }
+
     // return empty object if no errors
     // this will get assigned to the error property of the field at hand
     // so we can display it with password.error

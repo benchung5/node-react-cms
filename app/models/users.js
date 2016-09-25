@@ -13,16 +13,6 @@ module.exports = function (sequelize, DataTypes) {
         // }
       },
       instanceMethods: {
-        // validatePassword: function (password, callback) {
-        //   let isValid = false;
-        //   if (password.length > 5 ) {
-        //     isValid = true;
-        //     callback(null, isValid);
-        //   } else {
-        //     isValid = false;
-        //     callback("Password must be at least 5 characters long", isValid)
-        //   }
-        // },
         comparePassword: function (candidatePassword, callback) {
 
           //compare the trying passoword with the one in the existing model
@@ -34,8 +24,14 @@ module.exports = function (sequelize, DataTypes) {
       hooks: {
         beforeValidate: function (user) {
 
-          if (user.password.length < 5) {
-            return sequelize.Promise.reject("password must be at least 5 characters long");
+          //password strenth:
+          //https://www.thepolyglotdeveloper.com/2015/05/use-regex-to-test-password-strength-in-javascript/
+          //let strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+          //let mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+          let lightRegex = new RegExp("^((?=.*[A-Z]|[a-z])(?=.*[0-9]))(?=.{6,})");
+          if(!lightRegex.test(user.password)) {
+              //six characters or more and has at least one lowercase and one uppercase alphabetical character or has at least one lowercase and one numeric character or has at least one uppercase and one numeric character
+              return sequelize.Promise.reject("password must be at least 6 characters long with at least one numeric character");
           }
 
           //check if user already exists, we do this already in unique: true 

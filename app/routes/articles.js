@@ -28,7 +28,7 @@ const handleError = require('../lib/handle_errors');
     //     //delete from the database
     // });
 
-    // post to http://192.168.99.100/api/articles/create
+    // post to http://192.168.99.100/articles/create
     router.post('/create', function (req, res) {
         models.Article.create({
             title: req.body.title,
@@ -43,23 +43,40 @@ const handleError = require('../lib/handle_errors');
         //we must check the error this way because sequelize will handle errors differently
         //depending on what kind of error it is.
         let errorMessage = handleError(error);
+
+        console.log('response errormessage-------------------------------: ', errorMessage);
+
+        res.json({ error: errorMessage });
+
+       });
+    });
+
+    //http://192.168.99.100/articles/delete
+    router.post('/delete', function (req, res) {
+        console.log('delete route request to delete: ', req.body.slug);
+        models.Article.destroy({
+            where: {
+                slug: req.body.slug
+            }
+        }).then(function (articles) {
+
+            res.json(articles);
+
+        }).catch(function (error) {
+
+        //we must check the error this way because sequelize will handle errors differently
+        //depending on what kind of error it is.
+        let errorMessage = handleError(error);
         res.json({ error: errorMessage });
 
        });
     });
 
 
-    router.get('/', function(req, res) {
+    router.get('/', function (req, res) {
 
-        let userstemp = null;
-
-        models.User.findAll().then(function (users) {
-            userstemp = users;
-        }).then(function () {
-            models.Article.findAll().then(function (articles) {
-                res.json(articles);
-            })
-
+        models.Article.findAll().then(function (articles) {
+            res.json(articles);
         });
 
     });

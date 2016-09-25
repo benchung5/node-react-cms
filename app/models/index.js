@@ -64,7 +64,7 @@ sequelize
       return db.User.findOrCreate({
         where: {
           username: 'John',
-          password: '123'
+          password: 'a123456'
         }
       });
     })
