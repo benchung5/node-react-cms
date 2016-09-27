@@ -15,6 +15,9 @@ export default () => {
                         <li>
                             <Link className="nav-link" to="/admin-react/article-add">Add Articles</Link>
                         </li>
+                        <li>
+                            <Link className="nav-link" to="/admin-react/users-list">View Users</Link>
+                        </li>
                     </ul>
                 </div>
         );

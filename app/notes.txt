@@ -110,6 +110,33 @@ module.exports = function(sequelize, DataTypes) {
     
 // });
 
+    // //and this is a bit easier too
+    // app.get('/api/person/:id', function(req, res) {
+    //     // get the data from the database
+    //     res.json({firstname: 'John', lastname: 'Doe'}); 
+    // });
+
+
+
+            //  models.User.findAll({
+        //  }).then(function (users) {
+        //      userstemp = users;
+        //  }).then(function () {
+        //      models.Article.findAll({
+        //      }).then(function (articles) {
+        //          //template will pick up the isAdminPage variable
+        //          res.locals.isAdminPage = true;
+
+        //          res.render('admin-react', {
+        //              Pg: req.params.page,
+        //              Qstr: req.query.qstr,
+        //              Usrs: userstemp,
+        //              Artic: articles
+        //          })
+        //      })
+
+        //  });
+
 
 
 

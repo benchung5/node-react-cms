@@ -6,7 +6,7 @@
        color: red;
    }
 
-   .article-list li a {
+   .item-list li a {
        float: right;
        margin-left: 10px;
    }

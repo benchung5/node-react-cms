@@ -19,24 +19,6 @@ const requireAuth = passport.authenticate('jwt', { session: false });
 
         res.render('admin-react');
 
-        //  models.User.findAll({
-        //  }).then(function (users) {
-        //      userstemp = users;
-        //  }).then(function () {
-        //      models.Article.findAll({
-        //      }).then(function (articles) {
-        //          //template will pick up the isAdminPage variable
-        //          res.locals.isAdminPage = true;
-
-        //          res.render('admin-react', {
-        //              Pg: req.params.page,
-        //              Qstr: req.query.qstr,
-        //              Usrs: userstemp,
-        //              Artic: articles
-        //          })
-        //      })
-
-        //  });
      } else {
          res.status(500).render('error', {
              message: 'There is an error displaying the admin page',

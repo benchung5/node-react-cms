@@ -54,8 +54,6 @@ export function addArticle({ title, slug, body }) {
 export function deleteArticle({ slug }) {
         return function(dispatch) {
 
-        console.log('deleteArticle called: ' )
-
         // post to http://192.168.99.100/articles/delete
         axios.post( `${ROOT_URL}/articles/delete`, { slug } )
         .then( response => {
@@ -70,8 +68,8 @@ export function deleteArticle({ slug }) {
             }
         })
         .catch(() => {
-            //todo: if request is bad
-            dispatch(addArticleError('there was an error creating the article'));
+            //todo: handle if request is bad
+            console.log('error deleting the article');
         });
     }
 }

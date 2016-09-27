@@ -20,6 +20,7 @@ import Signup from './components/auth/signup';
 import Dashboard from './components/dashboard';
 import ArticlesList from './components/articles/articles_list';
 import ArticleAdd from './components/articles/article_add';
+import UsersList from './components/users/users_list';
 
 
 import RequireAuth from './components/auth/require_auth';
@@ -53,7 +54,8 @@ ReactDOM.render(
         <Route path="signup" component={Signup} />      
         <Route path="dashboard" component={RequireAuth(Dashboard)} />
         <Route path="articles-list" component={RequireAuth(ArticlesList)} />
-        <Route path="article-add" component={ArticleAdd} />
+        <Route path="article-add" component={RequireAuth(ArticleAdd)} />
+        <Route path="users-list" component={RequireAuth(UsersList)} />
       </Route>
     </Router>
   </Provider>
