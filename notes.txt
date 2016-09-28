@@ -52,7 +52,7 @@ pass:
 default admin user:
 Admin
 pass:
-123
+a11111
 
 sass dev:
 -------------------------

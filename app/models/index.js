@@ -46,9 +46,9 @@ sequelize
   }).then(function () {
     return db.Article.findOrCreate({
       where: {
-        title: 'demo title',
-        slug: 'demo-title',
-        body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nascetur ridiculus mus. Blandit augue, at blandit dui.'
+        title: 'Contact',
+        slug: 'contact',
+        body: 'This is an auto-generated contact page.'
       }
     });
   })

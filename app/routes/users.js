@@ -49,7 +49,7 @@ router.post('/create', function (req, res) {
 
 //http://192.168.99.100/users/delete
 router.post('/delete', function (req, res) {
-    console.log('delete route request to delete: ', req.body.username);
+
     models.User.destroy({
         where: {
             username: req.body.username

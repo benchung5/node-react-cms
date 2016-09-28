@@ -20,8 +20,6 @@ router.post('/create', function (req, res) {
         //depending on what kind of error it is.
         let errorMessage = handleError(error);
 
-        console.log('response errormessage-------------------------------: ', errorMessage);
-
         res.json({ error: errorMessage });
 
     });
@@ -29,7 +27,7 @@ router.post('/create', function (req, res) {
 
 //http://192.168.99.100/articles/delete
 router.post('/delete', function (req, res) {
-    console.log('delete route request to delete: ', req.body.slug);
+
     models.Article.destroy({
         where: {
             slug: req.body.slug

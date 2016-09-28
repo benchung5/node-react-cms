@@ -4,13 +4,15 @@ var sg = require('sendgrid').SendGrid('SG.KEttWsSSSkmeRU_5jtXg1w.Yz1vXpfs29lqwRD
 var helper = require('sendgrid').mail
     
 
-//http://192.168.99.100/contact
-router.get('/send', function (req, res) {
+//http://192.168.99.100/contact/send
+router.post('/send', function (req, res) {
 
-    from_email = new helper.Email("test@example.com")
-    to_email = new helper.Email("bchung@creativebytesstudios.com")
-    subject = "Hello World from the SendGrid Node.js Library!"
-    content = new helper.Content("text/plain", "Hello, Email!")
+    //from_email = new helper.Email("test@example.com")
+    from_email = new helper.Email(req.body.email);
+    to_email = new helper.Email("ben@benchung.com")
+    subject = "New contact form submission from your website!"
+    //content = new helper.Content("text/plain", "Hello, Email!")
+    content = new helper.Content("text/plain", req.body.message)
     mail = new helper.Mail(from_email, subject, to_email, content)
 
     var requestBody = mail.toJSON()
@@ -22,7 +24,7 @@ router.get('/send', function (req, res) {
         console.log(response.statusCode)
         console.log(response.body)
         console.log(response.headers)
-        res.redirect('/');
+        res.redirect('/contact');
     })
 
 });

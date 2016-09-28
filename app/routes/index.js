@@ -11,6 +11,47 @@ const _ = require('lodash');
 //sence we use tokens we don't want to use the cookie based session (default)
 const requireAuth = passport.authenticate('jwt', { session: false });
 
+
+//render contact page template
+router.get('/contact', function (req, res) {
+
+    //if database is connected...
+    if (!_.isEmpty(models)) {
+
+
+        let articlesTemp = null;
+
+        models.Article.findAll().then(function (articles) {
+            articlesTemp = articles;
+        }).then(function () {
+                models.Article.findById('contact').then(function (article) {
+                if (article) {
+
+                    // to handle querystrings: Qstr: req.query.qstr
+                    //put on template: <h2>Querystring Value: <%= Qstr %></h2>
+                    res.render('contact', {
+                        Slug: article.slug,
+                        Pg: article.title,
+                        Cont: article.body,
+                        Articles: articlesTemp
+                    });
+                } else {
+                    console.log('logging response error');
+                    res.status(404).render('404', { Url: req.url });
+                }
+            });
+
+        });
+
+    } else {
+        res.status(500).render('error', {
+            message: 'no connection to database. Did you create one?',
+            error: {}
+        });
+    }
+
+});
+
 //render home template
 router.get('/', function (req, res) {
 
