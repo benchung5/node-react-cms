@@ -174,3 +174,27 @@ GRANT ALL PRIVILEGES ON DATABASE docker TO docker;
 dockerfile:
 FROM library/postgres
 ADD init.sql /docker-entrypoint-initdb.d/
+
+note:
+app/config.json is excluded from the git repo so you'll need to make your own with this structure:
+
+{
+  "development": {
+    "database": {
+    ...
+    },
+    "auth" {
+    ...
+    }
+    "contact": {
+    ...
+    }
+  },
+  "test": {
+  ...
+  },
+  "production": {
+  ...
+  }
+}
+

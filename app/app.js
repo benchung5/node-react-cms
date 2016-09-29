@@ -7,7 +7,7 @@ var path = require('path');
 // var logger = require('morgan');
 // var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var expressValidator = require('express-validator');
 var routes = require('./routes/index');
 var users  = require('./routes/users');
 var articles  = require('./routes/articles');
@@ -38,6 +38,9 @@ app.set('view engine', 'ejs');
 // app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+// this line must be immediately after express.bodyParser()!
+//app.use(expressValidator([options]));
+app.use(expressValidator());
 // app.use(cookieParser());
 //using middleware (third party code between two layers of software) - express.static - serves up static content.
 //maps the url /assets/img.jpg, etc. This will get referenced below...

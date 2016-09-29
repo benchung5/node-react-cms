@@ -15,6 +15,10 @@ const requireAuth = passport.authenticate('jwt', { session: false });
 //render contact page template
 router.get('/contact', function (req, res) {
 
+    //get the query var to see if this is a
+    //redirect from the sent form
+    var formSent = req.query.sent || false;
+
     //if database is connected...
     if (!_.isEmpty(models)) {
 
@@ -33,7 +37,8 @@ router.get('/contact', function (req, res) {
                         Slug: article.slug,
                         Pg: article.title,
                         Cont: article.body,
-                        Articles: articlesTemp
+                        Articles: articlesTemp,
+                        Sent: formSent
                     });
                 } else {
                     console.log('logging response error');

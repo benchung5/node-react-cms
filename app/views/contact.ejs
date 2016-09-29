@@ -9,18 +9,24 @@
 
                 <!--content-->
                 <div id="page-content"><%- Cont %></div>
-                <br>
+                <div class="spacer"></div>
                 <!--end content-->
 
                 <!--contact form -->
                 <form method="POST" action="/contact/send">
+                    <p>
                     Email Address:
                     <input type="text" id="email" name="email" />
+                    </p>
+                    <p>
                     Message:
                     <textarea name="message" rows="4" cols="50"></textarea>
-                    <br />
+                    </p>
                     <input type="submit" value="Submit" />
                 </form>
+                <% if(Sent) { %>
+                    <p>Message successfully sent!</p>
+                <% } %>
                 <!--end contact form -->
 
 

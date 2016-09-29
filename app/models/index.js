@@ -5,7 +5,7 @@ const path      = require("path");
 const Sequelize = require("sequelize");
 const env       = process.env.NODE_ENV || "development";
 const config    = require(__dirname + '/../config.json')[env];
-const sequelize = new Sequelize(config.database, config.username, config.password, config);
+const sequelize = new Sequelize(config.database.database, config.database.username, config.database.password, config.database);
 const db        = {};
 
 //attempt connection

@@ -13,7 +13,7 @@ function tokenForUser(user) {
     const timestamp = new Date().getTime();
     //sub is for 'subject' of the token is the user - it's a standard for web tokens
     // iat is 'issued at'
-    return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
+    return jwt.encode({ sub: user.id, iat: timestamp }, config.auth.secret);
 }
 
 const requireSignin = passport.authenticate('local', { session: false });

@@ -3,11 +3,35 @@ const _ = require('lodash');
 var express = require('express');
 var router = express.Router();
 var helper = require('sendgrid').mail
-const env       = process.env.NODE_ENV || "development";
-const config    = require(__dirname + '/../config.json')[env];
-var sg = require('sendgrid')(config.contact.sendgrid_key);
+var sg = require('sendgrid')('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');
+//var sg = require('sendgrid').SendGrid('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');
 
 
+
+//http://192.168.99.100/contact/send
+// router.post('/send', function (req, res) {
+
+//     //from_email = new helper.Email("test@example.com")
+//     from_email = new helper.Email(req.body.email);
+//     to_email = new helper.Email("ben@benchung.com")
+//     subject = "New contact form submission from your website!"
+//     //content = new helper.Content("text/plain", "Hello, Email!")
+//     content = new helper.Content("text/plain", req.body.message)
+//     mail = new helper.Mail(from_email, subject, to_email, content)
+
+//     var requestBody = mail.toJSON()
+//     var request = sg.emptyRequest()
+//     request.method = 'POST'
+//     request.path = '/v3/mail/send'
+//     request.body = requestBody
+//     sg.API(request, function (response) {
+//         console.log(response.statusCode)
+//         console.log(response.body)
+//         console.log(response.headers)
+//         res.redirect('/contact');
+//     });
+
+// });
 
 //http://192.168.99.100/contact/send
 router.post('/send', function (req, res, next) {
@@ -23,7 +47,7 @@ router.post('/send', function (req, res, next) {
     if (!errors) {
 
         from_email = new helper.Email(req.body.email);
-        to_email = new helper.Email(config.contact.to_email);
+        to_email = new helper.Email("ben@benchung.com");
         subject = "New contact form submission from your website!";
         content = new helper.Content("text/plain", req.body.message);
         mail = new helper.Mail(from_email, subject, to_email, content);
@@ -36,7 +60,7 @@ router.post('/send', function (req, res, next) {
         sg.API(request, function (error, response) {
 
             if (error) { 
-                res.json({ error : error });
+                res.json('error: ' + error);
             }
 
             console.log(response.statusCode);
@@ -76,10 +100,27 @@ router.post('/send', function (req, res, next) {
     }
     //Display errors to user
     else {
-        res.json({ error : errors[0].msg });
+
     }
 
 });
 
+
+// var sendgrid = require('sendgrid').SendGrid('1pixkey', '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');
+
+// //http://192.168.99.100/contact
+// router.get('/send', function (req, res) {
+//     console.log('foo');
+//     sendgrid.send({
+//         to: 'ben@benchung.com',
+//         from: 'noreply@site.com',
+//         subject: 'Hello World',
+//         text: 'My first sendgrid email'
+//     }), function (err, json) {
+//         if (err) { return console.error(err); }
+//         console.log(json);
+//     }
+//     res.redirect('/');
+// });
 
 module.exports = router;

@@ -37,6 +37,7 @@
     "ejs": "^2.4.1",
     "express": "^4.13.4",
     "express-react-views": "^0.10.2",
+    "express-validator": "^2.20.10",
     "jwt-simple": "^0.5.0",
     "lodash": "^3.10.1",
     "mysql": "^2.10.2",
@@ -52,7 +53,7 @@
     "redux": "^3.0.4",
     "redux-form": "^5.3.2",
     "redux-thunk": "^2.1.0",
-    "sendgrid": "^3.0.9",
+    "sendgrid": "^4.3.1",
     "sequelize": "^3.23.4",
     "sequelize-cli": "^2.1.0",
     "serve-favicon": "^2.3.0"
