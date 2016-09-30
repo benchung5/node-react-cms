@@ -12,7 +12,6 @@ class AddArticle extends Component {
     }
 
     renderAdded() {
-        // console.log('articleAdded: ', this.props.articleAdded);
         if(this.props.articleAdded && !this.props.errorMessage) {
             return (
                 <div>
@@ -24,7 +23,6 @@ class AddArticle extends Component {
 
     renderAlert() {
         if (this.props.errorMessage && !this.props.articleAdded) {
-            console.log(this.props.errorMessage);
             return (
                 <div className="alert alert-danger">
                     <strong>Oops!</strong> {this.props.errorMessage}

@@ -22,7 +22,7 @@ export function fetchArticles() {
         .catch(() => {
             console.log('error fetching articles');
             //todo: if request is bad
-            // dispatch(authError('response.data.error'));
+            // dispatch(fetchArticlesError('response.data.error'));
         });
     }
 }
@@ -35,7 +35,6 @@ export function addArticle({ title, slug, body }) {
         axios.post( `${ROOT_URL}/articles/create`, { title, slug, body } )
         .then( response => {
             if(response.data.error) {
-                console.log(response.data.error)
                 dispatch(addArticleError(`there was an error creating the article: ${response.data.error}`));
             } else {
                 dispatch({

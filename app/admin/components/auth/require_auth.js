@@ -29,7 +29,6 @@ export default function (ComposedComponent) {
         render() {
             //the this.props is for passing up new props from the combined component *instance to 
             //existing props on the original composed component below
-            //console.log(this.props.resources) // resourceList
             // console.log('Rendering', ComposedComponent);
             // console.log(this.props.authenticated);
             return <ComposedComponent {...this.props} />

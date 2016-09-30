@@ -48,10 +48,8 @@ export function signupUser({ username, password }) {
         axios.post( `${ROOT_URL}/users/create`, { username, password } )
         .then( response => {
             if(response.data.error) {
-                console.log(response.data.error);
                 dispatch(authError(`There was an error creating the account: ${response.data.error}`));
             } else {
-                console.log('response-create-success', response);
                 dispatch( { type: AUTH_USER } )
                 localStorage.setItem('token', response.data.token);
                 browserHistory.push('/admin-react/dashboard');

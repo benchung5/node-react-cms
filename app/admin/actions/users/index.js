@@ -19,15 +19,13 @@ export function fetchUsers() {
         .catch(() => {
             console.log('error fetching users');
             //todo: if request is bad
-            // dispatch(authError('response.data.error'));
+            // dispatch(fetchUsersError('response.data.error'));
         });
     }
 }
 
 export function deleteUser({ username }) {
         return function(dispatch) {
-
-        console.log('deleteUser called: ' )
 
         // post to http://192.168.99.100/articles/delete
         axios.post( `${ROOT_URL}/users/delete`, { username } )

@@ -1,11 +1,5 @@
-//using express
-//----------------------------------------------------//
-
 var express = require('express');
 var path = require('path');
-// var favicon = require('serve-favicon');
-// var logger = require('morgan');
-// var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 var routes = require('./routes/index');
@@ -20,21 +14,18 @@ var env  = process.env.NODE_ENV || "development";
 var config  = require(__dirname + '/config.json')[env];
 
 //express() returns a function and stores it in app.
-//calls the create server method like we did manually but maks things easier
 var app = express();
 
 //use an environment variable to change the port # depending if it's deployed on a server or locally.
 //express usually uses port 3000 so we can use that as a fallback if no env variable exists
 var port = process.env.PORT || 3000;
 
+//by default it will look of for views in a folder called 'views' but explicly set here
 app.set('views', __dirname + '/views');
 
-//must indicate this to tell node where to look for the view engine if using one.
-//by default it will look of for them in a folder called 'views'
+//specify the view engine (for templating pages).
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
 // app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -55,14 +46,6 @@ app.use('/users', users);
 app.use('/articles', articles);
 app.use('/contact', contact);
 app.use('/', routes);
-
-// error handlers
-
-// // catch 404 and forward to error handler
-// app.use(function(req, res, next){
-//     res.status(404).render('404', { Url: req.url });
-//     next(err);
-// });
 
 // development error handler
 // will print stacktrace
@@ -85,22 +68,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
-//set global variables
-// app.locals({
-//     site: {
-//         title: 'Site Title',
-//         description: 'Site description.'
-//     },
-//     author: {
-//         name: 'Ben Chung',
-//         contact: 'ben@benchung.com'
-//     },
-//     isAdminPage: false,
-//     authenticated: 'true'
-// });
-
-// app.locals.isAdminPage = false;
-// console.log(app.locals.isAdminPage);
 
 module.exports = app;

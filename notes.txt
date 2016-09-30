@@ -6,9 +6,9 @@ to run using docker:
 cd dockerfiles/docker_node_nginx
 
 #run
-docker-compose up -d
-#interactive mode
-docker-compose up  -it
+docker-compose up
+#daemon mode
+docker-compose up  -d
 
 if not database:
 -----

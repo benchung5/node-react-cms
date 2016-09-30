@@ -36,8 +36,13 @@ module.exports = function (sequelize, DataTypes) {
 
           //check if user already exists, we do this already in unique: true 
           //but this way we can be more specific for error handling, etc.
+          //$ne: 'John' (name not equal to John). - the schema will catch this one anyways if there's a problem
+          //so we don't want to have this auto log an error every time findOrCreate is called for the default user
           User.find({
-            where: { username: user.username }
+            where: { 
+              username: user.username,
+              $ne: 'John'
+               }
           })
             .then(function (user) {
 
@@ -60,20 +65,6 @@ module.exports = function (sequelize, DataTypes) {
           //encrypt password
           user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(8), null);
 
-          // //encrypt password: generate salt then run callback
-          // bcrypt.genSaltSync(10, function (err, salt) {
-          //   if (err) { return next(err); }
-
-          //   // user.password = bcrypt.hashSync(user.password, 8);
-          //   // hash password(encrypt) using salt
-          //   bcrypt.hashSync(user.password, salt, null, function (err, hash) {
-          //     if (err) { return next(err); }
-          //     //overwrite plain text pass with encrypted one
-          //     console.log(hash);
-          //     user.password = hash;
-
-          //   });
-          // });
         }
       }
     });

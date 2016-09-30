@@ -63,6 +63,9 @@ sequelize
     }).then(function () {
       return db.User.findOrCreate({
         where: {
+          username: 'John'
+        },
+        defaults: {
           username: 'John',
           password: 'a123456'
         }
