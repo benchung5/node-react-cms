@@ -87,7 +87,7 @@ see docker-machine-producion.sh
 (must use 1 gig droplet or there will be errors on npm install)
 -----------------------------------------------------------------------------------------------------------
 
-# first temporarily remove your node_modules folder from add dir
+# first temporarily remove your node_modules folder from app dir
 
 # navigate to project dir
 cd dockerfiles/docker_node_nginx
@@ -109,22 +109,23 @@ psql -U postgres demo_schema < /app-db-dumps/dbexport.pgsql
 #exit out of container
 exit
 
+#restart the Postgres container:
+docker restart dockernodenginx_postgres_1
+
 # run again but interactive mode:
-docker-compose -f docker-compose.yml -f production.yml up
+docker-compose -f production.yml up
+
 
 ------
 
 preview on production:
-104.236.5.133:5246/
-
-db server on production:
-104.236.5.133:1260
+104.131.25.104:5246
 
 access adminer on production:
-104.236.5.133:4001
+104.131.25.104:5458
 
 db server:
-104.236.5.133:5432
+104.131.25.104:1260
 
 username:
 postgres

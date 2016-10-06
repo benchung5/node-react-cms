@@ -2,9 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import * as actions from '../actions/auth';
-import {
-    ROOT_URL
-    } from '../config';
+
 
 class Header extends Component {
 
@@ -50,7 +48,7 @@ class Header extends Component {
                 <nav className="navbar nabar-light">
                     <ul className="nav navbar-nav">
                         <li className="nav-item">
-                            <a href={`${ROOT_URL}`} className="nav-link">Website</a>
+                            <a href="/" className="nav-link">Website</a>
                         </li>
                         {this.renderLinks() }
                     </ul>

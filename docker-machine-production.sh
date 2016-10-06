@@ -23,7 +23,9 @@ docker-machine ip node-nginx3
 
 # run docker compose on it (deamon mode):
 # (this applies the production file over the original one)
-docker-compose -f docker-compose.yml -f production.yml up -d
+# docker-compose -f docker-compose.yml -f production.yml up -d
+# this uses the production file instead of the original
+docker-compose -f production.yml up -d
 
 # inspect the containers:
 docker-compose ps

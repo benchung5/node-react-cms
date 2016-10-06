@@ -6,8 +6,14 @@ import {
     ADD_ARTICLE_ERROR
     } from '../types';
 
+//import config from '../../../config-new';
+
 
 export function fetchArticles() {
+
+    //console.log(config);
+
+    console.log("oo");
 
     return function(dispatch) {
         axios.get(`${ROOT_URL}/articles`)

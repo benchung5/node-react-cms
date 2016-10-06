@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 module.exports = {
   entry: [
     './admin/index.js'
@@ -21,5 +23,17 @@ module.exports = {
    watchOptions: {
     aggregateTimeout: 1000,
     poll: 1000
-  }
+  },
+  plugins:[
+    new webpack.DefinePlugin({
+      'process.env':{
+        'NODE_ENV': process.env.NODE_ENV
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress:{
+        warnings: true
+      }
+    })
+  ]
 };

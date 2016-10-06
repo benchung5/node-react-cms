@@ -2,6 +2,11 @@ FROM node:6.3.0
 
 RUN mkdir /src
 
+# must use polling here, as file system watches are disabled over network shares, 
+# which is how the container mounts our app directory
+# CMD webpack --watch --progress --watch-polling
+RUN npm install webpack -g
+
 #install nodemon globally
 RUN npm install nodemon -g
 
@@ -23,12 +28,8 @@ ADD package.json package.json
 # (RUN happens on a build if the command before it's contents are changed)
 RUN npm install
 
-# define migration (sequelize)
-# RUN node_modules/.bin/sequelize model:create --name Article --attributes "slug:string, "
-# RUN node_modules/.bin/sequelize model:create --name Todo --attributes "title:string, complete:boolean,UserId:integer"
-
 ADD nodemon.json nodemon.json
 
-# must use polling here, as file system watches are disabled over network shares, 
-# which is how the container mounts our app directory
-# CMD webpack --watch --watch-polling
+RUN webpack --watch --progress --watch-polling
+
+

@@ -7,6 +7,8 @@ web:
   links:
     - postgres
   command: nodemon -L app/bin/www
+  environment:
+    - NODE_ENV=development
 
 nginx:
   restart: always
